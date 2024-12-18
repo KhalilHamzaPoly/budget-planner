@@ -1,0 +1,49 @@
+<app-side-nav></app-side-nav>
+<div class="main-container">
+    <div class="container">
+        <h2>Transaction History</h2>
+        <form [formGroup]="todoform" class="input-form">
+            <div class="form-row-two">
+                <div class="form-group">
+                    <select formControlName="month" id="month" class="form-control" (change)="onChangeExpense($event)">
+                        <option value="" disabled>Select Month</option>
+                        <option *ngFor="let month of monthKeys()" [value]="month">{{ month }}</option>
+                    </select>
+                </div>
+                <div class="total-income form-group">
+                    {{ selectedMonth ? "Transaction for " + selectedMonth + ": $" + calculateTotalExpense(selectedMonth) : "No month have been selected" }}
+                </div>
+            </div>
+        </form>
+
+        <hr>
+        <div>
+            <ng-container
+            *ngIf="selectedMonth; then didSelectMonth else noSelectMonth">
+            </ng-container>
+            <ng-template #didSelectMonth>
+                <h3>Transaction History List - {{ selectedMonth }}</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Transaction Type</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let todoTrans of getFilteredExpense()">
+                            <td>{{ todoTrans.expenseType }}</td>
+                            <td>{{ todoTrans.expenseAmount }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </ng-template>
+            <ng-template #noSelectMonth>
+                <h3>No month have been selected</h3>
+            </ng-template>
+            <div class="input-form">
+                <button class="btn btn-primary" (click)="onBack()">Back</button>
+            </div>
+        </div>
+    </div>
+</div>

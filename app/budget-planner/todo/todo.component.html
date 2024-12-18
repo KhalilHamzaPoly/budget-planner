@@ -1,0 +1,77 @@
+<div class="navbar">
+    <h2>
+        TODO
+    </h2>
+</div>
+
+<div class="main-container">
+    <div class="container">
+        <h2>ToDo</h2>
+        <form [formGroup]="todoform" (ngSubmit)="onSubmitExpense()" class="input-form">
+            <div class="form-row-two">
+                <div class="form-group">
+                    <select formControlName="month" id="month" class="form-control" (change)="onChangeExpense($event)">
+                        <option value="" disabled>Select Month</option>
+                        <option *ngFor="let month of monthKeys()" [value]="month">{{ month }}</option>
+                    </select>
+                </div>
+                <div class="total-income form-group">
+                    {{ selectedMonth ? "Total ToDo's for " + selectedMonth + ": $" + calculateTotalExpense(selectedMonth) : "No month have been selected" }}
+                </div>
+            </div>
+            <div class="form-row-three">
+                <div class="form-group-three">
+                    <label for="expensetype">Transaction Type:</label>
+                    <input type="text" formControlName="expenseType" id="expenseAmount" class="form-control" 
+                        placeholder="Enter amount" [class.disable-dropdown]="!monthSelected">
+                </div>
+                <div class="form-group-three">
+                    <label for="expenseAmount">Amount:</label>
+                    <input type="number" formControlName="expenseAmount" id="expenseAmount" class="form-control"
+                        placeholder="Enter amount" [class.disable-dropdown]="!monthSelected">
+                </div>
+                <button type="submit" class="btn-primary form-group-three" (click)="onSubmitExpense()"
+                    [class.disable-dropdown]="!monthSelected">
+                    Add Transaction
+                </button>
+            </div>
+        </form>
+
+        <hr>
+        <ng-container
+        *ngIf="selectedMonth; then didSelectMonth else noSelectMonth">
+        </ng-container>
+        <ng-template #didSelectMonth>
+            <h3>Transaction List - {{ selectedMonth }}</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Transaction Type</th>
+                        <th>Amount</th>
+                        <th>Actions</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let todoTrans of getFilteredExpense(); let i = index">
+                        <td [ngClass]="{'strikout':  todoTrans.selected}" (click)="toggleSelection(todoTrans)">
+                            {{ todoTrans.expenseType }}
+                        </td>
+                        <td>{{ todoTrans.expenseAmount }}</td>
+                        <td>
+                            <mat-icon  (click)="deleteTodo(i)" class="delete-icon">delete</mat-icon>
+                        </td> 
+                    </tr>
+                </tbody>
+            </table>
+        </ng-template>
+        <ng-template #noSelectMonth>
+            <h3>No month have been selected</h3>
+        </ng-template>
+        <div class="input-form form-row-two">
+            <button class="btn btn-primary form-group" (click)="onBack()">Back</button>
+
+            <button class="btn btn-primary form-group" (click)="saveForm()"
+            [class.disable-dropdown]="!monthSelected">Save</button>
+        </div>
+    </div>
+</div>

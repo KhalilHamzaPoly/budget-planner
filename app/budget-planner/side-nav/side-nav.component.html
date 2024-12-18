@@ -1,0 +1,43 @@
+<div class="navbar">
+  <h2>BUDGET PLANNER</h2>
+</div>
+
+<div>
+  <div class="toggle-button-row" (click)="toggleSlideOut()">
+    <mat-icon>menu</mat-icon>
+  </div>
+</div>
+
+<div class="slide-out-panel" [class.slide-out]="isSlideOut">
+  <div class="slide-out-content">
+    <h3 class="nav">Budget Planner</h3>
+    <p
+      class="edit-col"
+      (click)="onDash()"
+      [class.active]="isActive('/budget-planner/dashboard')"
+    >
+      Dashboard
+    </p>
+    <p
+      class="edit-col"
+      (click)="onProfile()"
+      [class.active]="isActive('/budget-planner/profile')"
+    >
+      Profile
+    </p>
+    <p
+      class="edit-col"
+      (click)="onHistory()"
+      [class.active]="isActive('/budget-planner/history')"
+    >
+      Prev History
+    </p>
+    <p
+      class="edit-col"
+      (click)="onLogout()"
+      [class.active]="isActive('/budget-planner/login')"
+    >
+      Log Out
+    </p>
+  </div>
+</div>

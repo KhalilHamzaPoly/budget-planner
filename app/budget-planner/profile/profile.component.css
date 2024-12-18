@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f5f9;
+}
+
+.profile-form {
+    max-width: 600px;
+    margin: 100px auto 50px auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    align-items: center;
+}
+
+.profile-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    margin-right: 35px;
+    flex-basis: 45%;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-around;
+    gap: 2%;
+}
+
+select,
+input[type="email"],
+input[type="date"], 
+input[type="number"],
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #008080;
+    background-color: #f5f5f5;
+}
+
+
+input[type="email"]:focus, 
+input[type="number"]:focus, 
+input[type="date"]:focus, 
+input[type="text"]:focus {
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #008080, #80ced6);
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: #67bbc6;
+}
+
+.highlighted {
+    text-decoration: underline;
+}
+
+.highlighted:hover {
+    color: #80ced6;
+    text-decoration: underline;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+    font-size: 16px;
+}
+
+.full-width {
+    flex-basis: 100%;
+}
+
+
+.custom-snackbar {
+    background-color: #323232; 
+    color: #ffffff;           
+  }
+  
+  .custom-snackbar-action {
+    color: #ffffff !important;
+    font-weight: bold;        
+  }
